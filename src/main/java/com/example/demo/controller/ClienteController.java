@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import com.example.demo.dominio.entity.Cliente;
 import com.example.demo.dominio.repository.ClienteRepository;
 
@@ -25,11 +27,12 @@ public class ClienteController {
 
     @GetMapping
     public List<Cliente> getClientes() {
-        return clienteRepository.findAll();
+        return (List<Cliente>) clienteRepository.findAll();
     }
 
     @PostMapping
-    public Cliente create(@RequestBody Cliente cliente) {
+    public Cliente create(@Valid @RequestBody Cliente cliente) {
+        System.out.println(cliente);
         return clienteRepository.save(cliente);
     }
 
@@ -48,7 +51,7 @@ public class ClienteController {
     }
 
     @PutMapping(value ="/{id}")
-    public ResponseEntity update(@PathVariable Long id, @RequestBody Cliente cliente) {
+    public ResponseEntity update(@PathVariable Long id, @Valid @RequestBody Cliente cliente) {
         return clienteRepository.findById(id).map(record -> {
            record.setNome(cliente.getNome()); 
            record.setDatanascimento(cliente.getDatanascimento());

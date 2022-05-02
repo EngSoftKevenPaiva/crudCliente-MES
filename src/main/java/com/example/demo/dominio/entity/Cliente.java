@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.validator.constraints.br.CPF;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,15 +29,18 @@ public class Cliente {
     Long id;
 
     @Column
+    @CPF(message = "cpf inválido")
     String cpf;
 
     @Column
+    @NotBlank(message = "nome é obrigatório")
     String nome;
 
     @Column
+    @NotBlank(message = "sexo é obrigatório")
     String sexo;
 
+    @Temporal(value=TemporalType.DATE)
     @Column
-    @Temporal(TemporalType.DATE)
     Date datanascimento;
 }
