@@ -33,6 +33,7 @@ public class ClienteController {
     @PostMapping
     public Cliente create(@Valid @RequestBody Cliente cliente) {
         System.out.println(cliente);
+        // cliente.getEndereco().setBairro(cliente.getEndereco().getBairro());
         return clienteRepository.save(cliente);
     }
 
@@ -56,7 +57,8 @@ public class ClienteController {
            record.setNome(cliente.getNome()); 
            record.setDatanascimento(cliente.getDatanascimento());
            record.setSexo(cliente.getSexo());  
-           record.setCpf(cliente.getCpf()); 
+           record.setCpf(cliente.getCpf());
+           record.setEndereco(cliente.getEndereco());
 
            return ResponseEntity.ok().body(clienteRepository.save(record));
         }).orElse(ResponseEntity.notFound().build());

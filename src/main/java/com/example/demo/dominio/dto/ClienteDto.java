@@ -1,6 +1,8 @@
 package com.example.demo.dominio.dto;
 import java.util.Date;
 
+import com.example.demo.dominio.entity.Endereco;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,4 +16,5 @@ public class ClienteDto {
     String nome;
     String sexo;
     Date dataNascimento;
+    Endereco endereco;
 }
